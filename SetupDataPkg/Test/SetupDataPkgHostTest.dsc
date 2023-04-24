@@ -31,15 +31,9 @@
   ConfigKnobShimLib|SetupDataPkg/Library/ConfigKnobShimLib/ConfigKnobShimDxeLib/ConfigKnobShimDxeLib.inf
 
 [Components]
-  SetupDataPkg/Test/MockLibrary/MockUefiRuntimeServicesTableLib/MockUefiRuntimeServicesTableLib.inf
-  SetupDataPkg/Test/MockLibrary/MockUefiBootServicesTableLib/MockUefiBootServicesTableLib.inf
-  SetupDataPkg/Test/MockLibrary/MockResetSystemLib/MockResetSystemLib.inf
-  SetupDataPkg/Test/MockLibrary/MockResetUtilityLib/MockResetUtilityLib.inf
-  SetupDataPkg/Test/MockLibrary/MockPcdLib/MockPcdLib.inf
-  SetupDataPkg/Test/MockLibrary/MockConfigSystemModeLib/MockConfigSystemModeLib.inf
-  SetupDataPkg/Test/MockLibrary/MockPeiServicesLib/MockPeiServicesLib.inf
-  SetupDataPkg/Test/MockLibrary/MockActiveProfileIndexSelectorLib/MockActiveProfileIndexSelectorLib.inf
-
+  #
+  # Build HOST_APPLICATIONs
+  #
   SetupDataPkg/Library/ConfigVariableListLib/UnitTest/ConfigVariableListLibUnitTest.inf
 
   SetupDataPkg/Library/ConfigKnobShimLib/ConfigKnobShimDxeLib/UnitTest/ConfigKnobShimDxeLibUnitTest.inf {
@@ -89,3 +83,15 @@
       UefiRuntimeServicesTableLib|SetupDataPkg/Test/MockLibrary/MockUefiRuntimeServicesTableLib/MockUefiRuntimeServicesTableLib.inf
       ResetSystemLib|SetupDataPkg/Test/MockLibrary/MockResetSystemLib/MockResetSystemLib.inf
   }
+
+  #
+  # Build HOST_APPLICATION Libraries
+  #
+  SetupDataPkg/Test/MockLibrary/MockUefiRuntimeServicesTableLib/MockUefiRuntimeServicesTableLib.inf
+  SetupDataPkg/Test/MockLibrary/MockUefiBootServicesTableLib/MockUefiBootServicesTableLib.inf
+  SetupDataPkg/Test/MockLibrary/MockResetSystemLib/MockResetSystemLib.inf
+  SetupDataPkg/Test/MockLibrary/MockResetUtilityLib/MockResetUtilityLib.inf
+  SetupDataPkg/Test/MockLibrary/MockPcdLib/MockPcdLib.inf
+  SetupDataPkg/Test/MockLibrary/MockConfigSystemModeLib/MockConfigSystemModeLib.inf
+  SetupDataPkg/Test/MockLibrary/MockPeiServicesLib/MockPeiServicesLib.inf
+  SetupDataPkg/Test/MockLibrary/MockActiveProfileIndexSelectorLib/MockActiveProfileIndexSelectorLib.inf
