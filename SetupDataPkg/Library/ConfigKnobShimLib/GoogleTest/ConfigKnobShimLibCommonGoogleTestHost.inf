@@ -1,0 +1,38 @@
+
+## @file ConfigKnobShimLibCommonGoogleTestHost.inf
+# This is a sample to demonstrates the use of GoogleTest that supports host
+# execution environments.
+#
+# Copyright (c) 2022, Microsoft. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION    = 0x00010005
+  BASE_NAME      = ConfigKnobShimLibCommonGoogleTestHost
+  FILE_GUID      = 7D58A209-57F7-413D-B332-E9B27E6A31E4
+  MODULE_TYPE    = HOST_APPLICATION
+  VERSION_STRING = 1.0
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  ConfigKnobShimLibCommonGoogleTest.cpp
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SetupDataPkg/SetupDataPkg.dec
+  UnitTestFrameworkPkg/UnitTestFrameworkPkg.dec
+
+[LibraryClasses]
+  GoogleTestLib
+  BaseLib
+  DebugLib
+  ConfigKnobShimLib
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask
