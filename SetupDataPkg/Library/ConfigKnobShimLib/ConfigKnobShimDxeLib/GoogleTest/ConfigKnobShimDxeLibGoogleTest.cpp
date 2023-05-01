@@ -38,6 +38,6 @@ void expectMockGetVariableRet(UINT64 VariableData) {
   EXPECT_CALL(RtServicesMock, gRT_GetVariable)
     .WillOnce(DoAll(
       SetArgPointee<3>(sizeof(VariableData)), 
-      SetArgPointee<4>(&VariableData), 
+      SetArgBuffer<4>(&VariableData, sizeof(VariableData)), 
       Return(EFI_SUCCESS))); 
 }

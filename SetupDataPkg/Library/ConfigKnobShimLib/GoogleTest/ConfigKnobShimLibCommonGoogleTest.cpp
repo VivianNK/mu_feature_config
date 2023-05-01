@@ -20,7 +20,7 @@ extern "C" {
 }
 
 #define CONFIG_KNOB_GUID  {0x52d39693, 0x4f64, 0x4ee6, {0x81, 0xde, 0x45, 0x89, 0x37, 0x72, 0x78, 0x55}}
-
+MockUefiRuntimeServicesTableLib RtServicesMock;
 using namespace testing;
 
 class GetConfigKnobOverrideTest : public Test {
@@ -67,7 +67,6 @@ TEST_F(GetConfigKnobOverrideTest, InvalidParamError) {
 ///////////////////////////////////////////////////////////////////////////////
 class GetConfigKnobOverrideFromVariableStorageTest : public Test {
   protected:
-    MockUefiRuntimeServicesTableLib RtServicesMock;
     // MockPeiServicesLib PPIVariableServices; // EFI_PEI_READ_ONLY_VARIABLE2_PPI
     EFI_STATUS  Status;
     EFI_GUID    ConfigKnobGuid;
