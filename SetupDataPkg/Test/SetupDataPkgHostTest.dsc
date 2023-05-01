@@ -34,12 +34,18 @@
   #
   # Build HOST_APPLICATIONs
   #
-  SetupDataPkg/Library/ConfigKnobShimLib/GoogleTest/ConfigKnobShimLibCommonGoogleTestHost.inf {
+  SetupDataPkg/Library/ConfigKnobShimLib/ConfigKnobShimDxeLib/GoogleTest/ConfigKnobShimDxeLibGoogleTestHost.inf {
     <LibraryClasses>
       UefiRuntimeServicesTableLib|MdePkg/Test/Mock/Library/GoogleTest/MockUefiRuntimeServicesTableLib/MockUefiRuntimeServicesTableLib.inf
-      PeiServicesLib|SetupDataPkg/Test/MockLibrary/MockPeiServicesLib/MockPeiServicesLib.inf
       ConfigKnobShimLib|SetupDataPkg/Library/ConfigKnobShimLib/ConfigKnobShimPeiLib/ConfigKnobShimPeiLib.inf
   }
+
+  SetupDataPkg/Library/ConfigKnobShimLib/GoogleTest/ConfigKnobShimLibCommonGoogleTestHost.inf {
+    <LibraryClasses>
+      PeiServicesLib|MdePkg/Test/Mock/Library/GoogleTest/MockPeiServicesLib/MockPeiServicesLib.inf
+      ConfigKnobShimLib|SetupDataPkg/Library/ConfigKnobShimLib/ConfigKnobShimPeiLib/ConfigKnobShimPeiLib.inf
+  }
+
   SetupDataPkg/Library/ConfigVariableListLib/UnitTest/ConfigVariableListLibUnitTest.inf
 
   SetupDataPkg/Library/ConfigKnobShimLib/ConfigKnobShimDxeLib/UnitTest/ConfigKnobShimDxeLibUnitTest.inf {

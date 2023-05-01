@@ -9,7 +9,7 @@
 
 [Defines]
   INF_VERSION    = 0x00010005
-  BASE_NAME      = ConfigKnobShimLibCommonGoogleTestHost
+  BASE_NAME      = ConfigKnobShimDxeLibGoogleTestHost
   FILE_GUID      = 7D58A209-57F7-413D-B332-E9B27E6A31E4
   MODULE_TYPE    = HOST_APPLICATION
   VERSION_STRING = 1.0
@@ -21,7 +21,9 @@
 #
 
 [Sources]
-  ConfigKnobShimLibCommonGoogleTest.cpp
+  ../../GoogleTest/ConfigKnobShimLibGoogleTestCommon.c
+  ../../ConfigKnobShimLibCommon.c
+  ../ConfigKnobShimDxeLib.c
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -33,6 +35,3 @@
   BaseLib
   DebugLib
   ConfigKnobShimLib
-
-[Pcd]
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask
