@@ -23,17 +23,18 @@ using namespace testing;
 
 extern MockUefiRuntimeServicesTableLib RtServicesMock;
 
-
+// TODO maaybe need RtSeervicesMock in header file ?then it's initialized in common?
 // helper function with expect call to return EFI_NOT_FOUND
 //todo need to know variable size to return.. that's okay, right? this is a specific test...
 void expectMockGetVariableNotFound(UINT64 VariableData) {
+  // cast void * var data to uint64
   EXPECT_CALL(RtServicesMock, gRT_GetVariable)
     .WillOnce(DoAll(
       SetArgPointee<3>(sizeof(VariableData)), 
       Return(EFI_NOT_FOUND)));
 }
 
-void mockGetVariableRet(UINT64 VariableData) {
+void expectMockGetVariableRet(UINT64 VariableData) {
   EXPECT_CALL(RtServicesMock, gRT_GetVariable)
     .WillOnce(DoAll(
       SetArgPointee<3>(sizeof(VariableData)), 

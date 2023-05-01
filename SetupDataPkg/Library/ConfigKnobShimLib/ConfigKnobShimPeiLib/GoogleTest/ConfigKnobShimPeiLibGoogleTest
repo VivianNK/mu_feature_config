@@ -1,0 +1,42 @@
+/** @file ConfigKnobShimLibCommonGoogleTest.cpp
+  Google tests of the ConfigKnobShimLibCommon instance.
+
+  Copyright (c) Microsoft Corporation.
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#include <gtest/gtest.h>
+#include <GoogleTest/Library/MockPeiServicesLib.h>
+
+
+extern "C" {
+  #include <Uefi.h>
+  #include <Library/BaseLib.h>
+  #include <Library/DebugLib.h>
+  // include the c file to be able to unit test static function
+  #include "ConfigKnobShimLibCommon.c"
+}
+
+#define CONFIG_KNOB_GUID  {0x52d39693, 0x4f64, 0x4ee6, {0x81, 0xde, 0x45, 0x89, 0x37, 0x72, 0x78, 0x55}}
+
+using namespace testing;
+extern MockPeiServicesLib *PPIVariableServices; // EFI_PEI_READ_ONLY_VARIABLE2_PPI
+extern PPI_STATUS PpiStatus;
+
+
+// helper function with expect call
+void expectMockGetVariableNotFound() {
+  
+  // todo - need to dereference?
+  return;
+}
+
+// void mockGetVariableRet(void *servicesMock) {
+//   // TODO expect return values
+//   MockUefiRuntimeServicesTableLib RtServicesMock = (MockUefiRuntimeServicesTableLib) servicesMock;
+//   EXPECT_CALL(RtServicesMock, gRT_GetVariable)
+//     .WillOnce(Return(EFI_SUCCESS));
+    
+
+// }

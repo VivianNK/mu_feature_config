@@ -21,7 +21,7 @@
 #
 
 [Sources]
-  ../../GoogleTest/ConfigKnobShimLibGoogleTestCommon.c
+  ../../GoogleTest/ConfigKnobShimLibCommonGoogleTest.cpp
   ../../ConfigKnobShimLibCommon.c
   ../ConfigKnobShimPeiLib.c
 

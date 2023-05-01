@@ -21,9 +21,10 @@
 #
 
 [Sources]
-  ../../GoogleTest/ConfigKnobShimLibGoogleTestCommon.c
+  ../../GoogleTest/ConfigKnobShimLibCommonGoogleTest.cpp
   ../../ConfigKnobShimLibCommon.c
   ../ConfigKnobShimDxeLib.c
+  ConfigKnobShimDxeLibGoogleTest.cpp
 
 [Packages]
   MdePkg/MdePkg.dec
