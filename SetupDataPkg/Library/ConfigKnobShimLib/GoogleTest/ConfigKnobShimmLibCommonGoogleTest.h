@@ -11,8 +11,6 @@
 
 
 #include <gtest/gtest.h>
-#include <ConfigKnobShimmLibCommonGoogleTest.h>
-
 
 extern "C" {
   #include <Uefi.h>
