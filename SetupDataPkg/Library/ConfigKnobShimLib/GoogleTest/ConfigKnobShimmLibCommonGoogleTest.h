@@ -18,20 +18,19 @@ extern "C" {
   #include <Library/DebugLib.h>
 }
 
-// todo try creating new() to store on heap ??
-extern MockUefiRuntimeServicesTableLib *RtServicesMockPtr;
-
 // helper function with expect call
 //  function to determine which getvariable to use. based on unit test inf inclusion. 
 // put th eexpect call into the functions in dxe/pei specific files 
 void expectMockGetVariableBuffSmall(
-  OUT VOID *VariableData
+  OUT VOID *VariableData,
+  MockUefiRuntimeServicesTableLib *RtServicesMockPtr
 );
 
 
 // helper function with expect call
 void expectMockGetVariableRet(
-  OUT VOID *VariableData
+  OUT VOID *VariableData,
+  MockUefiRuntimeServicesTableLib *RtServicesMockPtr
 );
 
 #endif
