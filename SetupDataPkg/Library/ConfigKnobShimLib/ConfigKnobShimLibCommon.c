@@ -58,8 +58,13 @@ GetConfigKnobOverride (
     goto Exit;
   }
 
+    DEBUG ((DEBUG_INFO, "%a: BEFORE first GetConfigKnobFromVariable\n", __FUNCTION__));
+
   // Check size in variable storage
   Status = GetConfigKnobFromVariable (ConfigKnobGuid, ConfigKnobName, NULL, &VariableSize);
+
+    DEBUG ((DEBUG_INFO, "%a: AFTER first GetConfigKnobFromVariable\n", __FUNCTION__));
+
 
   if ((Status != EFI_BUFFER_TOO_SMALL) && EFI_ERROR (Status)) {
     goto Exit;
