@@ -71,6 +71,9 @@ TEST_F(GetConfigKnobOverrideTest, InvalidParamError) {
 
 ///////////////////////////////////////////////////////////////////////////////
 class GetConfigKnobOverrideFromVariableStorageTest : public Test {
+  public:
+    // VNK TODO TRY THIS NEXT MockUefiRuntimeServicesTableLib RtServicesMock = *RtServicesMockPtr;
+
   protected:
     // MockPeiServicesLib PPIVariableServices; // EFI_PEI_READ_ONLY_VARIABLE2_PPI
     EFI_STATUS  Status;
@@ -99,7 +102,7 @@ TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
 
   // expect the second getVariable call to update data
   //expectMockGetVariableRet();
-  EXPECT_CALL(RtServicesMock, 
+  EXPECT_CALL(*RtServicesMockPtr, 
     gRT_GetVariable(
       Char16StrEq(ConfigKnobName),
       BufferEq(&ConfigKnobGuid, sizeof(EFI_GUID)),
@@ -115,8 +118,8 @@ TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
 
   Status = GetConfigKnobOverride (&ConfigKnobGuid, ConfigKnobName, (VOID *)&ConfigKnobData, ProfileDefaultSize);
   
-  Mock::VerifyAndClearExpectations(&RtServicesMock);
-  Mock::AllowLeak(&RtServicesMock);
+  Mock::VerifyAndClearExpectations(RtServicesMockPtr);
+  // Mock::AllowLeak(&RtServicesMock);
 
   DEBUG ((DEBUG_INFO, "%a: AFTER call to getConfigKnobOverride\n", __FUNCTION__));
 
@@ -130,5 +133,6 @@ TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
 int main(int argc, char* argv[]) {
   testing::InitGoogleTest(&argc, argv);
   int result = RUN_ALL_TESTS();
+
   return result;
 }

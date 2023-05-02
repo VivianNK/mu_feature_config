@@ -19,7 +19,7 @@ extern "C" {
 }
 
 // todo try creating new() to store on heap ??
-extern MockUefiRuntimeServicesTableLib RtServicesMock;
+extern MockUefiRuntimeServicesTableLib *RtServicesMockPtr;
 
 // helper function with expect call
 //  function to determine which getvariable to use. based on unit test inf inclusion. 

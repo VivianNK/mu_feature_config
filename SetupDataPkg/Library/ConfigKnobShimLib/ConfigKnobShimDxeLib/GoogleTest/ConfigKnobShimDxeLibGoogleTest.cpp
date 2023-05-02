@@ -21,7 +21,7 @@ extern "C" {
 using namespace testing;
 
 // todo try creating new() since it's i think getting iniitalized on the heap anyways?
-MockUefiRuntimeServicesTableLib RtServicesMock;
+MockUefiRuntimeServicesTableLib *RtServicesMockPtr = new MockUefiRuntimeServicesTableLib;
 
 // TODO maaybe need RtServicesMock in header file ?then it's initialized in common?
 // helper function with expect call to return EFI_NOT_FOUND
@@ -29,7 +29,7 @@ MockUefiRuntimeServicesTableLib RtServicesMock;
 void expectMockGetVariableBuffSmall(VOID *VarData) {
   UINT64 VariableData = (UINT64) VarData;
 
-  EXPECT_CALL(RtServicesMock, gRT_GetVariable)
+  EXPECT_CALL(*RtServicesMockPtr, gRT_GetVariable)
     .WillOnce(DoAll(
       SetArgPointee<3>(sizeof(VariableData)), 
       Return(EFI_BUFFER_TOO_SMALL)));
