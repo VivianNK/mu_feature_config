@@ -18,6 +18,7 @@ extern "C" {
   #include <Library/DebugLib.h>
 }
 
+// todo try creating new() to store on heap ??
 extern MockUefiRuntimeServicesTableLib RtServicesMock;
 
 // helper function with expect call

@@ -23,7 +23,10 @@ extern "C" {
 #define CONFIG_KNOB_GUID  {0x52d39693, 0x4f64, 0x4ee6, {0x81, 0xde, 0x45, 0x89, 0x37, 0x72, 0x78, 0x55}}
 using namespace testing;
 
-MockUefiRuntimeServicesTableLib RtServicesMock;
+// my guess is it needs to be defined in this file for when/if pei test uses this file.
+// or remove all calls to it from this file!!
+// MockUefiRuntimeServicesTableLib RtServicesMock;
+// Mock::AllowLeak(&mockService);
 
 class GetConfigKnobOverrideTest : public Test {
   protected:
@@ -69,7 +72,6 @@ TEST_F(GetConfigKnobOverrideTest, InvalidParamError) {
 ///////////////////////////////////////////////////////////////////////////////
 class GetConfigKnobOverrideFromVariableStorageTest : public Test {
   protected:
-    MockUefiRuntimeServicesTableLib RtServicesMock;
     // MockPeiServicesLib PPIVariableServices; // EFI_PEI_READ_ONLY_VARIABLE2_PPI
     EFI_STATUS  Status;
     EFI_GUID    ConfigKnobGuid;
@@ -114,6 +116,7 @@ TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
   Status = GetConfigKnobOverride (&ConfigKnobGuid, ConfigKnobName, (VOID *)&ConfigKnobData, ProfileDefaultSize);
   
   Mock::VerifyAndClearExpectations(&RtServicesMock);
+  Mock::AllowLeak(&RtServicesMock);
 
   DEBUG ((DEBUG_INFO, "%a: AFTER call to getConfigKnobOverride\n", __FUNCTION__));
 
