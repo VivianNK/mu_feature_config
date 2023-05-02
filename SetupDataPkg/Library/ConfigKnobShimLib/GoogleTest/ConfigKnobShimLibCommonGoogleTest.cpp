@@ -23,6 +23,8 @@ extern "C" {
 #define CONFIG_KNOB_GUID  {0x52d39693, 0x4f64, 0x4ee6, {0x81, 0xde, 0x45, 0x89, 0x37, 0x72, 0x78, 0x55}}
 using namespace testing;
 
+MockUefiRuntimeServicesTableLib RtServicesMock;
+
 class GetConfigKnobOverrideTest : public Test {
   protected:
     EFI_GUID    ConfigKnobGuid;
@@ -88,6 +90,7 @@ class GetConfigKnobOverrideFromVariableStorageTest : public Test {
 };
 
 TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
+  using ::testing::Mock;
 
   // expect the first GetVariable call to get size
   expectMockGetVariableBuffSmall((VOID *)VariableData);
@@ -110,6 +113,8 @@ TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
 
   Status = GetConfigKnobOverride (&ConfigKnobGuid, ConfigKnobName, (VOID *)&ConfigKnobData, ProfileDefaultSize);
   
+  Mock::VerifyAndClearExpectations(&RtServicesMock);
+
   DEBUG ((DEBUG_INFO, "%a: AFTER call to getConfigKnobOverride\n", __FUNCTION__));
 
   ASSERT_EQ (Status, EFI_SUCCESS);
@@ -121,5 +126,6 @@ TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
 
 int main(int argc, char* argv[]) {
   testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  int result = RUN_ALL_TESTS();
+  return result;
 }
