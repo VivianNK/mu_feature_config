@@ -18,9 +18,12 @@ extern "C" {
   #include <Library/DebugLib.h>
 }
 
+extern MockUefiRuntimeServicesTableLib RtServicesMock;
 
 // helper function with expect call
-void expectMockGetVariableNotFound(
+//  function to determine which getvariable to use. based on unit test inf inclusion. 
+// put th eexpect call into the functions in dxe/pei specific files 
+void expectMockGetVariableBuffSmall(
   OUT VOID *VariableData
 );
 

@@ -88,20 +88,12 @@ class GetConfigKnobOverrideFromVariableStorageTest : public Test {
 };
 
 TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
-  //  return gRT->GetVariable (
-  //               ConfigKnobName,
-  //               ConfigKnobGuid,
-  //               NULL,
-  //               ConfigKnobDataSize,
-  //               ConfigKnobData
-  //               );
 
-  // First call
-  EXPECT_CALL(RtServicesMock, gRT_GetVariable)
-    .WillOnce(DoAll(
-      SetArgPointee<3>(sizeof(VariableData)), 
-      Return(EFI_BUFFER_TOO_SMALL)));
+  // expect the first GetVariable call to get size
+  expectMockGetVariableBuffSmall((VOID *)VariableData);
 
+  // expect the second getVariable call to update data
+  //expectMockGetVariableRet();
   EXPECT_CALL(RtServicesMock, 
     gRT_GetVariable(
       Char16StrEq(ConfigKnobName),
@@ -113,20 +105,6 @@ TEST_F(GetConfigKnobOverrideFromVariableStorageTest, VariableStorageSuccess) {
       SetArgPointee<3>(sizeof(VariableData)), 
       SetArgBuffer<4>(&VariableData, sizeof(VariableData)), 
       Return(EFI_SUCCESS))); 
-
-  // // If doing Pei test, will need to mock pei services
-  // ON_CALL(PPIVariableServices, PeiServiesLocatePpi())
-  //   .WillByDefault(Return(PpiStatus));
-
-
-  // TODO  function to determine which getvariable to use. based on unit test inf inclusion. 
-  // put th eexpect call into the functions in dxe/pei specific files 
-  
-  // expect the first GetVariable call to get size
-  //expectMockGetVariableNotFound();
-
-  // expect the second getVariable call to update data
-  //expectMockGetVariableRet();
 
   DEBUG ((DEBUG_INFO, "%a: BEFORE call to getConfigKnobOverride!\n", __FUNCTION__));
 
