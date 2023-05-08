@@ -9,28 +9,34 @@
 #ifndef CONFIG_KNOB_SHIM_LIB_COMMON_GOOGLE_TEST_
 #define CONFIG_KNOB_SHIM_LIB_COMMON_GOOGLE_TEST_
 
-
 #include <gtest/gtest.h>
 
 extern "C" {
-  #include <Uefi.h>
-  #include <Library/BaseLib.h>
-  #include <Library/DebugLib.h>
+#include <Uefi.h>
+#include <Library/BaseLib.h>
+#include <Library/DebugLib.h>
 }
 
-// helper function with expect call
-//  function to determine which getvariable to use. based on unit test inf inclusion. 
-// put th eexpect call into the functions in dxe/pei specific files 
-void expectMockGetVariableBuffSmall(
-  OUT VOID *VariableData,
-  MockUefiRuntimeServicesTableLib *RtServicesMockPtr
-);
-
+void
+expectMockGetVariable (
+  VOID                             *VariableData,
+  MockUefiRuntimeServicesTableLib  *RtServicesMockPtr
+  );
 
 // helper function with expect call
-void expectMockGetVariableRet(
-  OUT VOID *VariableData,
-  MockUefiRuntimeServicesTableLib *RtServicesMockPtr
-);
+//  function to determine which getvariable to use. based on unit test inf inclusion.
+// put th eexpect call into the functions in dxe/pei specific files
+void
+expectMockGetVariableBuffSmall (
+  OUT VOID                         *VariableData,
+  MockUefiRuntimeServicesTableLib  *RtServicesMockPtr
+  );
+
+// helper function with expect call
+void
+expectMockGetVariableSuccess (
+  OUT VOID                         *VariableData,
+  MockUefiRuntimeServicesTableLib  *RtServicesMockPtr
+  );
 
 #endif

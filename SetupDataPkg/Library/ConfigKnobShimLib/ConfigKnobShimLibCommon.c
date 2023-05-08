@@ -75,8 +75,10 @@ GetConfigKnobOverride (
     Status = EFI_BAD_BUFFER_SIZE;
   } else if (Status == EFI_BUFFER_TOO_SMALL) {
     // buffer too small means we found the variable and it was the size we expected
-    // Check if it is in variable storage
+    // Check if it is in variable storage 
+    DEBUG ((DEBUG_INFO, "%a: BEFORE Second GetConfigKnobFromVariable\n", __FUNCTION__));
     Status = GetConfigKnobFromVariable (ConfigKnobGuid, ConfigKnobName, ConfigKnobData, &VariableSize);
+    DEBUG ((DEBUG_INFO, "%a: AFTER Second GetConfigKnobFromVariable\n", __FUNCTION__));
   }
 
 Exit:

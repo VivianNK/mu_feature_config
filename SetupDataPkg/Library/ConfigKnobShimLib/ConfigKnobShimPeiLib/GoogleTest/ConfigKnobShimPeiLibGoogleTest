@@ -9,25 +9,29 @@
 #include <gtest/gtest.h>
 #include <GoogleTest/Library/MockPeiServicesLib.h>
 
-
 extern "C" {
-  #include <Uefi.h>
-  #include <Library/BaseLib.h>
-  #include <Library/DebugLib.h>
-  // include the c file to be able to unit test static function
-  #include "ConfigKnobShimLibCommon.c"
+#include <Uefi.h>
+#include <Library/BaseLib.h>
+#include <Library/DebugLib.h>
+// include the c file to be able to unit test static function
+#include "ConfigKnobShimLibCommon.c"
 }
 
 #define CONFIG_KNOB_GUID  {0x52d39693, 0x4f64, 0x4ee6, {0x81, 0xde, 0x45, 0x89, 0x37, 0x72, 0x78, 0x55}}
 
 using namespace testing;
-extern MockPeiServicesLib *PPIVariableServices; // EFI_PEI_READ_ONLY_VARIABLE2_PPI
-extern PPI_STATUS PpiStatus;
-
+extern MockPeiServicesLib  *PPIVariableServices; // EFI_PEI_READ_ONLY_VARIABLE2_PPI
+extern PPI_STATUS          PpiStatus;
 
 // helper function with expect call
-void expectMockGetVariableNotFound() {
-  
+void
+expectMockGetVariableNotFound (
+  )
+{
+  // // If doing Pei test, will need to mock pei services
+  // ON_CALL(PPIVariableServices, PeiServiesLocatePpi())
+  //   .WillByDefault(Return(PpiStatus));
+
   // todo - need to dereference?
   return;
 }
@@ -37,6 +41,5 @@ void expectMockGetVariableNotFound() {
 //   MockUefiRuntimeServicesTableLib RtServicesMock = (MockUefiRuntimeServicesTableLib) servicesMock;
 //   EXPECT_CALL(RtServicesMock, gRT_GetVariable)
 //     .WillOnce(Return(EFI_SUCCESS));
-    
 
 // }
